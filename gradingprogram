@@ -1,0 +1,66 @@
+/*Program Statement: Write a program to ask for 3 numbers (positive number > 0 and
+* <100 extract the numbers, find the average of these three numbers, then assign letter
+* grades based on
+* if average >= 90 assign A
+*			 >= 80 assign B
+*			 >= 70 assign C
+*			 >= 60 assign D
+*			 otherwise assign F
+*			Display the grades, average and earned letter grade.
+*/
+
+#include <iostream>
+#include <iomanip>
+#include <Windows.h>
+
+using namespace std;
+
+int main()
+{
+    double Grade_1, Grade_2, Grade_3, avgrade;
+
+    cout << "Enter your first grade: ";
+    cin >> Grade_1;
+    cout << "Enter your second grade: ";
+    cin >> Grade_2;
+    cout << "Enter your third grade: ";
+    cin >> Grade_3;
+    if (((Grade_1 && Grade_2 && Grade_3) < 0 || (Grade_1 && Grade_2 && Grade_3) > 100))
+
+    {
+        cout << "One of the grades inputted was invalid " << endl;
+        cout << "Try again " << endl;
+    }
+    else
+    {
+        avgrade = ((Grade_1 + Grade_2 + Grade_3) / 3.0);
+        cout << "Your average grade is   " << avgrade << endl;
+
+
+
+        if (avgrade >= 90) {
+            cout << "Your Grade is A" << endl;
+        }
+        else if (avgrade >= 80) {
+            cout << "Your Grade is B" << endl;
+        }
+        else if (avgrade >= 70) {
+            cout << "Your Grade is C" << endl;
+        }
+        else if (avgrade >= 60) {
+            cout << "Your Grade is D" << endl;
+        }
+        else {
+            cout << "Your Grade is F" << endl;
+        }
+
+        cout << "The grades you input are " << setw(5) << Grade_1 << setw(5) << Grade_2 << setw(5) << Grade_3 << endl;
+        cout << "The average grade y ou have is =====>  " << avgrade << endl;
+
+    }
+
+    system("pause");
+
+    return 0;
+
+}
