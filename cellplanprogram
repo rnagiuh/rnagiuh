@@ -1,0 +1,106 @@
+//Ravinder Nagi
+//02/23/2022
+/*
+//The goal of this program is to calculate a customers monthly bill which depends on 
+which of the three listed plans the customer chooses. It will then output the information 
+in the form of a bill which includes input info and also the total amount due. It will
+also give the customer information about how much they could save when compared to the 
+other plans. 
+*/
+
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+int main()
+{
+	//List of variables
+	char planchoice;
+	double data;
+	double total;
+	double extra_data = 8.00;
+	string custname;
+
+	//plan prices
+	double a_cost = 19.99;
+	double b_cost = 59.99;
+	double c_cost = 79.99;
+	int a_datalimit = 2;
+	int b_datalimit = 4;
+
+	//input
+	cout << "Please enter your name " << endl; 
+	getline (cin, custname);
+	cout << "Hello " << custname << endl;
+	cout << "The available mobile phone service plans are: \n";
+	cout << "Plan A $19.99 per month. 2 gigabytes are provided. Additional gigabytes are $8.00 per gigabyte\n";
+	cout << "Plan B $59.99 per month. 8 gigabytes are provided. Additional gigabytes are $8.00 per gigabyte\n";
+	cout << "Plan C $79.99 per month. Unlimited data is provided.\n";
+	cout << "Enter your plan choice and your expected data usage using a format similar to (A 10) " << endl;
+	cin >> planchoice >> data;
+
+	//check for valid inputs
+	while (planchoice!='A'&&planchoice!='B'&&planchoice!='C')
+	{
+		cout << "Invalid plan input " << endl; 
+		cout << "Enter only plans A,B, or C. " << endl; 
+		cin >> planchoice;
+	}
+
+	while (data < 0)
+	{
+		cout << "Invalid data usage input " << endl;
+		cout << "Please enter a valid data input greater than 0" << endl; 
+		cin >> data;
+	}
+	
+	//Process and output
+	if (planchoice == 'A')
+	{
+		total = a_cost + ((data - a_datalimit) * extra_data);
+	}
+	if (planchoice == 'B')
+	{
+		total = b_cost + ((data - b_datalimit) * extra_data);
+	}
+	if (planchoice == 'C')
+	{
+		total = c_cost;
+		//there is no further arithmetic for plan c as it is unlimited.
+	}
+	cout << endl;
+	cout << endl;
+	//Display a bill with possible costs savings and a reccomendation to use plan C is A or B end up more expensive with data usage. 
+
+	cout << "Hello, " << custname << endl;
+	cout << "You have selected Plan " << planchoice << endl;
+	cout << "The total price is $" << total <<  endl;
+	/*
+	if (planchoice == 'A')
+	{
+		cout << "Your price with Plan B would've been " << total + 40 << endl;
+	}
+	if (planchoice == 'B')
+	{
+		cout << "Your price with Plan A would've been " << total - 40 << endl;
+		cout << "The total cost for the chosen plan is $" << total << endl << endl << endl;
+	}
+
+	*/
+
+	// does the comparison of total cost compared to unlimited plan
+	if (total < c_cost)
+	{
+		cout << "This plan and data usage is cheaper than Plan C" << endl;
+	}
+	else 
+	if (total > c_cost)
+	{
+		cout << "Dear " << custname << endl;
+		cout <<"I will recommend choosing Plan C for optimal savings, as the savings are: $" << total - c_cost << endl;
+	}
+	system("pause");
+
+	return 0;
+}
